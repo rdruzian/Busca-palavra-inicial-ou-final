@@ -14,67 +14,6 @@ namespace Teoria_bemLoko
         List<Node> ordem = new List<Node>();
         Node n = new Node();
 
-        public List<Node> ShortestPath(string begin, string end)
-        {
-            List<Node> caminho = new List<Node>();
-            Graph grafo = new Graph();
-            Node no = new Node(begin, 0);
-            no.Parent = null;
-            grafo.nodes.Add(no);
-            caminho.Add(no);
-
-            while (!no.Name.Equals(end))
-            {
-                no = null;
-                foreach (Node n in grafo.nodes)
-                {
-                    Node nodeOrigin = this.Find(n.Name);
-                    foreach (Edge edOrigin in nodeOrigin.Edges)
-                    {
-                        Node auxno = grafo.Find(edOrigin.To.Name);
-                        if (auxno == null)
-                        {
-                            if (no == null || (Convert.ToDouble(n.Info) + edOrigin.Cost) < Convert.ToDouble(n.Info))
-                            {
-                                no = new Node(edOrigin.To.Name, Convert.ToDouble(n.Info) + edOrigin.Cost);
-                                no.Parent = n;
-                                caminho.Add(edOrigin.To);
-                                edOrigin.To.Parent = edOrigin.From;
-                            }
-                        }
-                    }
-                }
-                grafo.nodes.Add(no);
-                grafo.AddEdge(no.Name, no.Parent.Name, 0);
-            }
-            return caminho;
-        }
-
-        public List<Node> BreadthFirstSearch(string begin)
-        {
-            ordem.Clear();
-            n = Find(begin);
-            n.Visited = true;
-            q.Enqueue(n);
-            ordem.Add(n);
-
-            while (q.Count != 0)
-            {
-                n = q.Dequeue();
-                foreach (var m in n.Edges)
-                {
-                    if (m.To.Visited == false)
-                    {
-                        m.To.Visited = true;
-                        q.Enqueue(m.To);
-                        ordem.Add(m.To);
-                        m.To.Parent = n;
-                    }
-                }
-            }
-            return ordem;
-        }
-
         public List<Node> DepthFirstSearch(string begin)
         {
             ordem.Clear();

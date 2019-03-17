@@ -8,10 +8,10 @@ namespace Teoria_bemLoko
 {
     class Regra
     {
-        //public List<string> aux = new List<string>();
         public List<char> alfabeto = new List<char>();
         public List<char> variaveis = new List<char>();
         public List<Tuple<string,string>> regra = new List<Tuple<string,string>>();
+        public string palavraInicial, palavraFinal;
         private string[] aux;
         Graph g = new Graph();
 
@@ -42,6 +42,11 @@ namespace Teoria_bemLoko
         {
             aux = itens.Split(Convert.ToChar(itens), ' ');
             g.AddNode(aux[0], aux[1]);
+        }
+
+        public void busca(string palavra)
+        {
+            Console.WriteLine(g.DepthFirstSearch(palavra));
         }
     }
 }

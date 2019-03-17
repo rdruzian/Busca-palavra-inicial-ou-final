@@ -12,8 +12,6 @@ namespace Teoria_bemLoko
         {
             #region variaveis
             Regra r = new Regra();
-            string palavraFinal;
-            char palavraInicial;
             char aux;
             string regra;
             #endregion
@@ -48,15 +46,15 @@ namespace Teoria_bemLoko
             if(aux.Equals('F') || aux.Equals('f'))
             {
                 Console.WriteLine("Entre com a palavra: ");
-                palavraFinal = Console.ReadLine();
-                //faz a busca da palavra, fazer busca atraves do passeio em largura
+                r.palavraFinal = Console.ReadLine();
+                r.busca(r.palavraFinal);
             }
 
             else if(aux.Equals('I') || aux.Equals('i'))
             {
                 Console.WriteLine("Entre com a palavra: ");
-                palavraInicial = Convert.ToChar(Console.ReadLine());
-                //faz a busca da palavra, fazer busca atraves do passeio em largura
+                r.palavraInicial = Console.ReadLine();
+                r.busca(r.palavraInicial);
             }
             #endregion
         }
