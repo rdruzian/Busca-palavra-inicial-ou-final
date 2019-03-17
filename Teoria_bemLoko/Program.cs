@@ -11,12 +11,11 @@ namespace Teoria_bemLoko
         static void Main(string[] args)
         {
             #region variaveis
-            List<char> alfabeto = new List<char>();
-            List<char> variaveis = new List<char>();
+            Regra r = new Regra();
             string palavraFinal;
             char palavraInicial;
             char aux;
-            Graph g = new Graph();
+            string regra;
             #endregion
 
             #region entrada
@@ -24,20 +23,23 @@ namespace Teoria_bemLoko
             {
                 Console.WriteLine("Entre com as variaveis (0 para terminar): ");
                 aux = Convert.ToChar(Console.ReadLine());
-                variaveis.Add(aux);
+                r.variaveis.Add(aux);
             } while (aux != '0');
 
             do
             {
                 Console.WriteLine("Entre com o alfabeto: ");
                 aux = Convert.ToChar(Console.ReadLine());
-                variaveis.Add(aux);
+                r.alfabeto.Add(aux);
             } while (aux != '0');
 
             do
             {
-                Console.WriteLine("Entre com a regra: ");
+                Console.WriteLine("Entre com a regra (separadas por espaco): ");
                 //Adiciona no grafo, tentar fazer verificação se a regra contem apenas as variaveis
+                regra = Console.ReadLine().ToString();
+                if (r.verifica(regra))
+                    r.recebe(regra);
             } while (aux != '0');
             
             Console.WriteLine("Palavra final ou inicial (F/I): ");
